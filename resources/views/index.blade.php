@@ -8,7 +8,6 @@
 
     <div class="container mx-auto px-20 flex justify-between items-center">
 
-        {{-- KIRI --}}
         <div class="max-w-2xl">
 
             <img src="{{ asset('images/logo_LAPRAS.png') }}"
@@ -41,7 +40,6 @@
             </div>
         </div>
 
-        {{-- KANAN --}}
         <div class="text-center max-w-sm">
 
             <img src="{{ asset('images/pesan.png') }}"

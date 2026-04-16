@@ -14,7 +14,6 @@
 
         {{-- TABLE --}}
         <table class="w-full text-sm border border-gray-200">
-
             @foreach([
                 'Tanggal'=>$aspirasi->created_at?->format('d M Y'),
                 'Nama'=>$aspirasi->siswa->name ?? '-',
@@ -34,7 +33,6 @@
                     {{ $v }}
                 </td>
             </tr>
-
             @endforeach
 
             {{-- FOTO --}}
@@ -51,7 +49,6 @@
                     @endif
                 </td>
             </tr>
-
         </table>
 
         {{-- FORM --}}
@@ -65,7 +62,7 @@
                 <label class="font-medium">Status</label>
 
                 <select name="status"
-                    class="w-full border border-gray-300 px-3 py-2 rounded 
+                    class="w-full border border-gray-300 px-3 py-2 rounded
                            focus:outline-none focus:ring-2 focus:ring-[#17B3A6]">
 
                     <option value="menunggu" {{ $aspirasi->status=='menunggu'?'selected':'' }}>
@@ -77,7 +74,6 @@
                     <option value="selesai" {{ $aspirasi->status=='selesai'?'selected':'' }}>
                         Selesai
                     </option>
-
                 </select>
             </div>
 
@@ -103,11 +99,7 @@
                     Simpan
                 </button>
             </div>
-
         </form>
-
     </div>
-
 </div>
-
 @endsection

@@ -54,7 +54,7 @@
             Belum punya akun?
             <a href="/register" class="text-blue-600 font-semibold hover:underline">Daftar</a>
         </p>
-        
+
         <a href="/" class="inline-flex items-center gap-2 mt-6 text-blue-600 hover:text-blue-800 text-sm font-medium">
             <i class="bi bi-arrow-left"></i> Kembali ke halaman utama
         </a>
@@ -75,5 +75,4 @@ function togglePassword(){
     }
 }
 </script>
-
 @endsection

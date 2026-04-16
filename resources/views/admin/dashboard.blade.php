@@ -1,10 +1,8 @@
 @extends('layouts.admin')
 @section('title','Dashboard Admin')
-
 @section('content')
 
 <div class="space-y-8">
-
     {{-- HEADER --}}
     <div>
         <h2 class="text-2xl font-bold text-gray-800">

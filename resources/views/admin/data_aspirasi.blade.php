@@ -47,7 +47,7 @@
                     <td class="border px-3 py-2">{{ $a->siswa->kelas ?? '-' }}</td>
                     <td class="border px-3 py-2">{{ $a->kategori->nama_kategori ?? '-' }}</td>
                     <td class="border px-3 py-2">{{ $a->lokasi ?? '-' }}</td>
-                
+
                     <td class="border px-3 py-2 text-center">
                         @if($a->foto)
                             <img src="{{ asset('storage/'.$a->foto) }}" class="w-16 h-12 object-cover rounded">
