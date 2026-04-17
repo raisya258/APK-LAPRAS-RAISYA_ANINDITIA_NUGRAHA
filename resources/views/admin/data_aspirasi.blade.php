@@ -63,9 +63,25 @@
                     </td>
 
                     <td class="border px-3 py-2 text-center">
-                        <a href="/admin/aspirasi/{{ $a->id }}" class="text-blue-500 text-lg">
-                            <i class="bi bi-eye"></i>
-                        </a>
+                        <div class="flex justify-center gap-3">
+
+                            <a href="/admin/aspirasi/{{ $a->id }}"
+                               class="text-blue-500 text-lg hover:text-[#17B3A6]">
+                                <i class="bi bi-eye"></i>
+                            </a>
+
+                            @if($a->status == 'selesai')
+                            <form action="/admin/aspirasi/{{ $a->id }}" method="POST"
+                                  onsubmit="return confirm('Yakin mau hapus?')">
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="text-red-500 text-lg hover:text-red-700">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </form>
+                            @endif
+                        </div>
                     </td>
                 </tr>
             @empty

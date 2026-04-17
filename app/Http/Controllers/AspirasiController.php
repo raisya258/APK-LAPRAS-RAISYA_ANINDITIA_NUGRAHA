@@ -46,11 +46,16 @@ class AspirasiController extends Controller
     public function store(Request $r)
     {
         $r->validate([
-            'judul_sarana'=>'required','kategori_id'=>'required',
-            'foto'=>'required|image','lokasi'=>'required','keterangan'=>'required'
+            'judul_sarana'=>'required',
+            'kategori_id'=>'required',
+            'foto'=>'required|image',
+            'lokasi'=>'required',
+            'keterangan'=>'required'
         ]);
 
-        $foto=$r->file('foto')? $r->file('foto')->store('foto_aspirasi','public'):null;
+        $foto=$r->file('foto')
+            ? $r->file('foto')->store('foto_aspirasi','public')
+            : null;
 
         Aspirasi::create([
             'siswa_id'=>Auth::id(),
@@ -62,28 +67,32 @@ class AspirasiController extends Controller
             'status'=>'menunggu'
         ]);
 
-        return redirect('/history-aspirasi')->with('success','Aspirasi berhasil dikirim');
+        return redirect('/history-aspirasi')
+            ->with('success','Aspirasi berhasil dikirim');
     }
 
     public function history()
     {
         return view('siswa.history',[
             'aspirasis'=>Aspirasi::with(['kategori','feedbacks'])
-                        ->where('siswa_id',Auth::id())->latest()->get()
+                        ->where('siswa_id',Auth::id())
+                        ->latest()->get()
         ]);
     }
 
     public function dataAspirasi()
     {
         return view('admin.data_aspirasi',[
-            'aspirasis'=>Aspirasi::with(['siswa','kategori'])->latest()->get()
+            'aspirasis'=>Aspirasi::with(['siswa','kategori'])
+                        ->latest()->get()
         ]);
     }
 
     public function detailAspirasi(int $id)
     {
         return view('admin.detail_aspirasi',[
-            'aspirasi'=>Aspirasi::with(['siswa','kategori','feedbacks'])->findOrFail($id)
+            'aspirasi'=>Aspirasi::with(['siswa','kategori','feedbacks'])
+                        ->findOrFail($id)
         ]);
     }
 
@@ -91,7 +100,8 @@ class AspirasiController extends Controller
     {
         return view('siswa.show',[
             'aspirasi'=>Aspirasi::with(['kategori','feedbacks'])
-                        ->where('siswa_id',Auth::id())->findOrFail($id)
+                        ->where('siswa_id',Auth::id())
+                        ->findOrFail($id)
         ]);
     }
 
@@ -104,13 +114,34 @@ class AspirasiController extends Controller
         ]);
 
         $a=Aspirasi::findOrFail($r->id);
-        $a->update(['status'=>$r->status]);
+
+        $a->status = $r->status;
+        $a->updated_at = now();
+        $a->save();
 
         Feedback::updateOrCreate(
             ['aspirasi_id'=>$a->id],
-            ['admin_id'=>Auth::id(),'feedback'=>$r->feedback]
+            [
+                'admin_id'=>Auth::id(),
+                'feedback'=>$r->feedback
+            ]
         );
 
-        return redirect('/admin/aspirasi')->with('success','Berhasil update');
+        return redirect('/admin/aspirasi')
+            ->with('success','Berhasil update');
+    }
+
+    public function destroy(int $id)
+    {
+        $a = Aspirasi::findOrFail($id);
+
+        if($a->status != 'selesai'){
+            return back()->with('error','Hanya yang selesai bisa dihapus');
+        }
+
+        $a->delete();
+
+        return redirect('/admin/aspirasi')
+            ->with('success','Aspirasi berhasil dihapus');
     }
 }

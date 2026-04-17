@@ -16,7 +16,6 @@
         </div>
     </div>
 
-
     <div class="flex justify-center mt-10">
 
         <div class="bg-white w-11/12 md:w-5/6 rounded-2xl shadow-lg p-8">
@@ -24,7 +23,6 @@
             <h2 class="text-xl font-bold mb-6 text-gray-700">
                 History Aspirasi
             </h2>
-
 
             <div class="overflow-x-auto">
 
@@ -43,7 +41,6 @@
                         </tr>
                     </thead>
 
-
                     <tbody>
 
                         @forelse($aspirasis as $a)
@@ -55,7 +52,11 @@
                             </td>
 
                             <td class="px-4 py-3 border border-gray-200">
+                                @if($a->updated_at > $a->created_at)
+                                {{ $a->updated_at?->format('d M Y') }}
+                                @else
                                 {{ $a->created_at?->format('d M Y') }}
+                                @endif
                             </td>
 
                             <td class="px-4 py-3 border border-gray-200">
@@ -92,7 +93,6 @@
                                 <span class="px-3 py-1 rounded-full text-xs {{ $color }}">
                                     {{ ucfirst($a->status) }}
                                 </span>
-
                             </td>
 
                             <td class="px-4 py-3 border border-gray-200 text-center">
@@ -101,9 +101,7 @@
                                     <i class="bi bi-eye"></i>
                                 </a>
                             </td>
-
                         </tr>
-
                         @empty
 
                         <tr>
@@ -112,19 +110,11 @@
                                 Belum ada aspirasi
                             </td>
                         </tr>
-
                         @endforelse
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
-
 @endsection

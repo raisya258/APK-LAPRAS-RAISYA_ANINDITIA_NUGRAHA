@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Detail')
+@section('title','Detail Aspirasi')
 
 @section('content')
 
@@ -39,6 +39,7 @@
 
                     @foreach([
                         'Tanggal Pengaduan'=>$aspirasi->created_at?->format('d M Y'),
+                        'Tanggal Feedback'=>$aspirasi->updated_at?->format('d M Y'),
                         'Judul'=>$aspirasi->judul_sarana,
                         'Kategori'=>$aspirasi->kategori->nama_kategori ?? '-',
                         'Lokasi'=>$aspirasi->lokasi,
@@ -51,7 +52,6 @@
                     </tr>
                     @endforeach
 
-                    {{-- FEEDBACK (AMBIL TERBARU) --}}
                     <tr>
                         <td style="padding:14px;border:1px solid #ddd;font-weight:500">Feedback</td>
                         <td style="padding:14px;border:1px solid #ddd">
@@ -59,15 +59,10 @@
                             {{ $f->feedback ?? 'Belum ada feedback' }}
                         </td>
                     </tr>
-
                 </table>
             </div>
-
         </div>
-
     </div>
     </div>
-
 </div>
-
 @endsection

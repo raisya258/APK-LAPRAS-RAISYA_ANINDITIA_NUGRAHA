@@ -7,11 +7,6 @@
 
     <div class="bg-white rounded-xl shadow p-6">
 
-        {{-- BACK --}}
-        <a href="/admin/aspirasi" class="text-gray-600 mb-4 inline-block">
-            ← Kembali
-        </a>
-
         {{-- TABLE --}}
         <table class="w-full text-sm border border-gray-200">
             @foreach([
@@ -57,7 +52,6 @@
 
             <input type="hidden" name="id" value="{{ $aspirasi->id }}">
 
-            {{-- STATUS --}}
             <div class="mb-4">
                 <label class="font-medium">Status</label>
 
@@ -77,7 +71,6 @@
                 </select>
             </div>
 
-            {{-- FEEDBACK --}}
             <div class="mb-4">
                 <label class="font-medium">Feedback</label>
 
@@ -87,12 +80,9 @@
                     placeholder="Tulis tanggapan admin..."></textarea>
             </div>
 
-            {{-- BUTTON --}}
             <div class="flex justify-between">
-                <button type="reset"
-                    class="bg-red-500 text-white px-4 py-2 rounded">
-                    Batal
-                </button>
+                <a href="/admin/aspirasi" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded">Batal
+            </a>
 
                 <button type="submit"
                     class="bg-[#17B3A6] hover:bg-[#139b90] text-white px-5 py-2 rounded">

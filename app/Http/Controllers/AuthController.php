@@ -51,7 +51,6 @@ class AuthController extends Controller
             [
                 'name'=>'required|regex:/^[a-zA-Z\s]+$/',
 
-                // FORMAT PW BIKIN AKUN
                 'username'=>[
                     'required',
                     'unique:users,username',
